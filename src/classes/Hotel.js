@@ -6,3 +6,11 @@
 //filter room by type
 
 //
+
+class Hotel {
+
+
+}
+
+
+export default Hotel
