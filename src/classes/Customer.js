@@ -1,4 +1,3 @@
-//has id, name, bookings, total spent
 class Customer {
   constructor(customer) {
     this.id = customer.id;
