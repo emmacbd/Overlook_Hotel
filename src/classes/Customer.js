@@ -1,7 +1,5 @@
-//has id, name, bookings, total spent
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
-//format date from sample bookings, may have to split/join when user enters idk at this point
 
 class Customer {
   constructor(customer) {
@@ -25,18 +23,17 @@ class Customer {
 }
 
 getPastBookings(currentDate, bookingData) {
+  this.getBookings(bookingData)
   this.bookings.forEach(booking => {
     if(booking.date < currentDate){
       this.pastBookings.push(booking)
     }
   })
     return this.pastBookings
-  //what iterator to use
-  //want to check each booking date in bookings array, if date of booking is before or less than current date, then push into pastbookings
-
 }
 
 getUpcomingBookings(currentDate, bookingData) {
+  this.getBookings(bookingData)
   this.bookings.forEach(booking => {
     if(booking.date > currentDate || booking.date === currentDate){
       this.upcomingBookings.push(booking)
@@ -44,14 +41,6 @@ getUpcomingBookings(currentDate, bookingData) {
   })
     return this.upcomingBookings
 }
-// Any room bookings I have made (past or present/upcoming)
-//need method to see past bookings,
-
-
-
-//need method to see upcoming bookings,
-
-
 
   calculateTotalSpent(bookingData, roomData) {
     this.getBookings(bookingData)
@@ -68,4 +57,5 @@ getUpcomingBookings(currentDate, bookingData) {
 
 
 };
+
 export default Customer;
