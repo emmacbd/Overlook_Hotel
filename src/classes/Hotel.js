@@ -3,10 +3,13 @@
 //need book room method,
 //need methods to find available rooms/determine unavailable
 
-//filter room by type
+//filter room by type method
+
+//book room method - need date input
 
 //
 
+//
 class Hotel {
 
 

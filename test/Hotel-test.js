@@ -9,3 +9,5 @@ describe('Room', () => {
     room1 = new Room(sampleRooms[0]);
     room2 = new Room(sampleRooms[1]);
   });
+
+});
