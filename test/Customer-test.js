@@ -3,6 +3,10 @@ import Customer from '../src/classes/Customer'
 import Booking from '../src/classes/Booking'
 import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+
+
 describe('Customer', () => {
   let customer1, customer2, customer3, booking1, booking2, booking3;
 
@@ -64,4 +68,19 @@ describe('Customer', () => {
      expect(cust1Total).to.equal(172.09);
   });
 
+  it('Should have method to determine customer\'s previous bookings', () => {
+    // customer3.getBookings(sampleBookings)
+    customer3.getPastBookings(currentDate, sampleBookings);
+
+    expect(customer3.pastBookings).to.have.lengthOf(1);
+    expect(customer3.pastBookings[0].roomNumber).to.deep.equal(23);
+  });
+
+  it('Should have a method to determine customer\'s upcoming bookings', () => {
+    // customer3.getBookings(sampleBookings);
+    customer3.getUpcomingBookings(currentDate, sampleBookings);
+
+    expect(customer3.upcomingBookings).to.have.lengthOf(1);
+    expect(customer3.upcomingBookings[0].roomNumber).to.deep.equal(15);
+  });
 });
