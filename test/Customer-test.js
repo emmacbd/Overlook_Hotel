@@ -2,8 +2,10 @@ import { expect } from 'chai';
 import Customer from '../src/classes/Customer'
 import Booking from '../src/classes/Booking'
 import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
+
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
+
 
 describe('Customer', () => {
   let customer1, customer2, customer3, booking1, booking2, booking3;
