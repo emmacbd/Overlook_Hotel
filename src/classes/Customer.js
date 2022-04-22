@@ -1,5 +1,7 @@
 //has id, name, bookings, total spent
-
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
+//format date from sample bookings, may have to split/join when user enters idk at this point
 
 class Customer {
   constructor(customer) {
