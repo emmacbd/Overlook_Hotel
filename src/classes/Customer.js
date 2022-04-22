@@ -1,9 +1,13 @@
 //has id, name, bookings, total spent
+
+
 class Customer {
   constructor(customer) {
     this.id = customer.id;
     this.name = customer.name;
     this.bookings = [];
+    this.pastBookings = [];
+    this.upcomingBookings = [];
     this.totalSpent = 0;
   }
 
@@ -17,6 +21,15 @@ class Customer {
     return 'You currently have no bookings. If you need to make a reservation, please visit our home page.'
   }
 }
+
+// Any room bookings I have made (past or present/upcoming)
+//need method to see past bookings,
+
+
+
+//need method to see upcoming bookings,
+
+
 
   calculateTotalSpent(bookingData, roomData) {
     this.getBookings(bookingData)
