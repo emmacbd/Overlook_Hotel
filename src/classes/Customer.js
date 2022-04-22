@@ -38,11 +38,11 @@ getPastBookings(currentDate, bookingData) {
 
 getUpcomingBookings(currentDate, bookingData) {
   this.bookings.forEach(booking => {
-    if(booking.date > currentDate){
+    if(booking.date > currentDate || booking.date === currentDate){
       this.upcomingBookings.push(booking)
     }
   })
-    return this.upcomingBookings  
+    return this.upcomingBookings
 }
 // Any room bookings I have made (past or present/upcoming)
 //need method to see past bookings,
