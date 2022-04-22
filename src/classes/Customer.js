@@ -35,6 +35,15 @@ getPastBookings(currentDate, bookingData) {
   //want to check each booking date in bookings array, if date of booking is before or less than current date, then push into pastbookings
 
 }
+
+getUpcomingBookings(currentDate, bookingData) {
+  this.bookings.forEach(booking => {
+    if(booking.date > currentDate){
+      this.upcomingBookings.push(booking)
+    }
+  })
+    return this.upcomingBookings  
+}
 // Any room bookings I have made (past or present/upcoming)
 //need method to see past bookings,
 
