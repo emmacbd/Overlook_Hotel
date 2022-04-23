@@ -36,6 +36,13 @@ main {
   flex-direction:column;
 }
 
+.pastBookingSection {
+
+}
+
+.futureBookingSection {
+  
+}
 .hidden {
   display: none;
 }
