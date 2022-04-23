@@ -23,15 +23,15 @@ it('Should have a list of bookings', () => {
   expect(hotel.bookings).to.equal(sampleBookings)
 });
 
-it.only('Should have a method to retrieve booking information', () => {
+it('Should have a method to retrieve booking information', () => {
   let foundBooking = hotel.getBooking(booking1);
 
   expect(foundBooking.number).to.equal(15);
   expect(foundBooking.bidet).to.equal(false);
 });
 
- it('Should have a method to find available rooms', () => {
-   let availableRooms =
- });
+ // it('Should have a method to find available rooms', () => {
+ //   let availableRooms =
+ // });
 
 });

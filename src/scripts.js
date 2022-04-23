@@ -22,8 +22,13 @@ const futureBookingSection = document.querySelector(".future-bookings-box");
 
 //GLOBAL VARIABLES
 let hotel = new Hotel(sampleRooms, sampleBookings);
-let customer = new Customer(sampleCustomers[2]);
+let customer = new Customer(sampleCustomers[2])
 
+const getCustomer = (currentDate, sampleBookings) => {
+  customer.getBookings(sampleBookings)
+  let customerFutureBookings = customer.getUpcomingBookings(currentDate, sampleBookings)
+  return customerPastBookings, customerFutureBookings
+}
 //FUNCTIONS
 
 const hide = (element) => {
@@ -34,14 +39,29 @@ const show = (element) => {
   element.classList.remove("hidden");
 }
 
-const displayPastBookings = (currentDate, sampleBookings, sampleRooms) => {
+// const getCustomer = (sampleCustomers) => {
+//   user = new Customer(sampleCustomers[0])
+//   this.displayDashboard()
+// }
+
+const displayDashboard = () => {
+  //totalspent innerHTML
+  //username innertext
+  this.getCustomer(currentDate, sampleBookings);
+  this.displayPastBookings(currentDate, sampleBookings, sampleRooms);
+  this.displayFutureBookings(currentDate, sampleBookings, sampleRooms);
+}
+
+const displayPastBookings = (sampleBookings, sampleRooms) => {
   let customerPastBookings = customer.getPastBookings(currentDate, sampleBookings)
+
+  console.log(customerPastBookings)
   pastBookingSection.innerHTML = "";
 
   customerPastBookings.forEach(booking => {
     let pastRoom = sampleRooms.find(room =>
       room.number === booking.roomNumber)
-    });
+
 
   pastBookingSection.innerHTML += `
     <article class="past-room-box">
@@ -53,16 +73,16 @@ const displayPastBookings = (currentDate, sampleBookings, sampleRooms) => {
       </div>
     </article>
   `
+  });
 }
 
-const displayFutureBookings = (currentDate, sampleBookings, sampleRooms) => {
-  let customerFutureBookings = customer.getUpcomingBookings(currentDate, sampleBookings)
+const displayFutureBookings = (customerFutureBookings) => {
   futureBookingSection.innerHTML = "";
 
   customerFutureBookings.forEach(booking => {
       let futureRoom = sampleRooms.find(room =>
         room.number === booking.roomNumber)
-      });
+
 
 
       futureBookingSection.innerHTML += `
@@ -75,10 +95,13 @@ const displayFutureBookings = (currentDate, sampleBookings, sampleRooms) => {
         </div>
       </article>
       `
+  });
 }
 
 
+//EVENT LISTENERS
 
+window.addEventListener('load', displayDashboard);
 //need to get a user
 //what about with login fuck idk
 //get users bookings

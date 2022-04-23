@@ -24,11 +24,9 @@ getBooking(bookingInfo){
     room.number === bookingInfo.roomNumber)
 }
 
-///check bookings array and compare with input date of user wtf how ok
-//dayjs
-//
 
-//filter room by type method dear god - param of roomtype, filter rooms array by roomtype but also will need check available rooms before returned filtered room by type FUCCK
+
+//filter room by type method - param of roomtype, filter rooms array by roomtype but also will need check available rooms before returned filtered room by type FUCCK
 
 
 }
