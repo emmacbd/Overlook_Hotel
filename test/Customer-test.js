@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import Customer from '../src/classes/Customer'
-import Booking from '../src/classes/Booking'
+import Customer from '../src/classes/Customer';
+import Booking from '../src/classes/Booking';
 import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 
 const dayjs = require('dayjs');
