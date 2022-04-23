@@ -10,7 +10,7 @@
   <nav class="nav-bar">
     <h2 class="nav">Welcome to Overlook Hotel</h2>
     <button class="book-button">Book A Room</button>
-    <button class="customer-bookings">VIEW YOUR BOOKINGS</button>
+    <button class="customer-bookings hidden">VIEW YOUR BOOKINGS</button>
   </nav>
   <main>
     <section class="create-booking-section hidden">
@@ -41,13 +41,20 @@
       <p class="no-results hidden">We are very sorry, but we found no matches for your search. Please modify your search to find available rooms.</p>
      </section>
     <section class="customer-dashboard">
-      <!-- THIS IS WHERE PAST AND FUTURE BOOKINGS GO -->
-      <article class="past-bookings-box">
-        <h3 class="past-bookings">Your Past Bookings</h3>
+      <article class="customer-info">
+        <h2 class="welcome-message">Welcome, <span class="customer-name" id="welcome-cust-id">User!</span></h2>
+        <h2 class="cust-spend">You have spent<span id="totalSpent">$0</span> at the Overlook.<br> We appreciate your business and look forward to serving you again soon!</h2>
       </article>
-      <article class="future-bookings-box">
-        <h3 class="future-bookings">Your Upcoming Bookings</h3>
-      </article>
+      <section class="past-bookings">
+        <h3>Your Past Bookings</h3>
+        <section class="past-bookings-box" id="pastBookBox">
+        </section>
+      </section>
+      <section class="future-bookings">
+        <h3>Your Upcoming Bookings</h3>
+        <section class="future-bookings-box" id="futureBookBox">
+        </section>
+      </section>
     </section>
   </main>
 </body>

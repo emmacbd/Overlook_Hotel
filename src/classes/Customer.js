@@ -23,9 +23,9 @@ class Customer {
   }
 }
 
-getPastBookings(currentDate, bookingData) {
-  this.pastBookings = [];
-  this.bookings.forEach(booking => {
+  getPastBookings(currentDate, bookingData) {
+    this.pastBookings = [];
+    this.bookings.forEach(booking => {
     if(booking.date < currentDate){
       this.pastBookings.push(booking)
     }
@@ -33,10 +33,10 @@ getPastBookings(currentDate, bookingData) {
     return this.pastBookings
 }
 
-getUpcomingBookings(currentDate, bookingData) {
-  this.upcomingBookings = [];
-  this.bookings.forEach(booking => {
-    if(booking.date > currentDate || booking.date === currentDate){
+  getUpcomingBookings(currentDate, bookingData) {
+    this.upcomingBookings = [];
+    this.bookings.forEach(booking => {
+      if(booking.date > currentDate || booking.date === currentDate){
       this.upcomingBookings.push(booking)
     }
   })

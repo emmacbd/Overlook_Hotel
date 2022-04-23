@@ -4,7 +4,8 @@ import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
 import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
-
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
 // An example of how you tell webpack to use a CSS (SCSS) file
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
@@ -19,16 +20,14 @@ const foundResults = document.querySelector(".results-found");
 const noResults = document.querySelector(".no-results");
 const pastBookingSection = document.querySelector(".past-bookings-box");
 const futureBookingSection = document.querySelector(".future-bookings-box");
+const customerName = document.querySelector(".customer-name");
+const custSpent = document.getElementById("totalSpent");
 
 //GLOBAL VARIABLES
 let hotel = new Hotel(sampleRooms, sampleBookings);
-let customer = new Customer(sampleCustomers[2])
+let customer = new Customer(sampleCustomers[2]);
 
-const getCustomer = (currentDate, sampleBookings) => {
-  customer.getBookings(sampleBookings)
-  let customerFutureBookings = customer.getUpcomingBookings(currentDate, sampleBookings)
-  return customerPastBookings, customerFutureBookings
-}
+
 //FUNCTIONS
 
 const hide = (element) => {
@@ -43,13 +42,19 @@ const show = (element) => {
 //   user = new Customer(sampleCustomers[0])
 //   this.displayDashboard()
 // }
+const getCustomerInfo = (currentDate, sampleBookings, customer) => {
+  customer.getBookings(sampleBookings);
 
-const displayDashboard = () => {
-  //totalspent innerHTML
-  //username innertext
-  this.getCustomer(currentDate, sampleBookings);
+  customerName.innerText = `${customer.name}!`;
+  custSpent.innerHTML = `$${customer.calculateTotalSpent(sampleBookings, sampleRooms)}`;
   this.displayPastBookings(currentDate, sampleBookings, sampleRooms);
   this.displayFutureBookings(currentDate, sampleBookings, sampleRooms);
+}
+
+const displayDashboard = () => {
+
+  this.getCustomerInfo(currentDate, sampleBookings, customer);
+
 }
 
 const displayPastBookings = (sampleBookings, sampleRooms) => {
@@ -76,7 +81,8 @@ const displayPastBookings = (sampleBookings, sampleRooms) => {
   });
 }
 
-const displayFutureBookings = (customerFutureBookings) => {
+const displayFutureBookings = (sampleBookings, sampleRooms) => {
+  let customerFutureBookings = customer.getUpcomingBookings(currentDate, sampleBookings)
   futureBookingSection.innerHTML = "";
 
   customerFutureBookings.forEach(booking => {
