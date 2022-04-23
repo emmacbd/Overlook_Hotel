@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Overlook Hotel</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
+  <nav class="nav-bar">
+    <h2 class="nav">Welcome to Overlook Hotel</h2>
+    <button class="book-button">BOOK HERE</button>
+    <button class="customer-bookings">VIEW YOUR BOOKINGS</button>
+  </nav>
+  <main>
+    <section class="create-booking-section hidden">
+      <p>Book A Room</p>
+      <form class="room-type-filter">
+        <fieldset class="booking-box">
+          <legend>Select Desired Room By Type</legend>
+          <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="residential">Residential Suite</label>
 
+          <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="junior">Junior Suite</label>
+
+          <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="suite">Suite</label>
+
+          <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="single">Single Room</label>
+
+          <label><input type="radio" name="room-type-options"   class="reservation-box-radio" id="any">Any Type</label>
+        </fieldset>
+        <div class="date-box">
+          <label for="dateSelection">Check-In Date:</label>
+          <input type="date" id="dateSelection" name="check-in-date" value="" min="">
+        </div>
+        <button class="find-room-button">Find Room</button>
+        <button class="clear-search" type="reset">Clear Search</button>
+    </form>
+    </section>
+    <section class="search-results-box hidden">
+      <p class="results-found">Your search returned the following rooms</span></p>
+      <p class="no-results hidden">We are very sorry, but we found no matches for your search. Please modify your search to find available rooms.</p>
+     </section>
+    <section class="customer-dashboard">
+      <!-- THIS IS WHERE PAST AND FUTURE BOOKINGS GO -->
+      <article class="past-bookings-box">
+        <h3 class="past-bookings">Your Past Bookings</h3>
+      </article>
+      <article class="future-bookings-box"></article>
+        <h3 class="future-bookings">Your Upcoming Bookings</h3>
+    </section>
+  </main>
 </body>
+<script src="bundle.js"></script>
 </html>

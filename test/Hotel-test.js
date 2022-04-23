@@ -14,6 +14,7 @@ describe('Room', () => {
     hotel = new Hotel(sampleRooms, sampleBookings);
   });
 
+
 it('Should have a list of rooms', () => {
   expect(hotel.rooms).to.equal(sampleRooms);
 });
