@@ -6,13 +6,16 @@ import './src/images/overlook.jpeg'
 
 //QUERY SELECTORS
 const customerDashboard = document.querySelector(".customer-dashboard");
+const searchBox = document.querySelector(".search-results-box")
+const foundResults = document.querySelector(".results-found");
+const noResults = document.querySelector(".no-results");
 
 
 
 
 //FUNCTIONS
 const displayCustomerBookings = (bookingData) => {
-  
+
 }
 //need to get a user
 //what about with login fuck idk
