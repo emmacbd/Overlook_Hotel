@@ -10,6 +10,7 @@
   <nav class="nav-bar">
     <h2 class="nav">Welcome to Overlook Hotel</h2>
     <button class="book-button">BOOK HERE</button>
+    <button class="customer-bookings">VIEW YOUR BOOKINGS</button>
   </nav>
   <main>
     <section class="create-booking-section hidden">
@@ -36,11 +37,16 @@
     </form>
     </section>
     <section class="search-results-box hidden">
-      <p class="results-found">Your query returned the following rooms</span></p>
+      <p class="results-found">Your search returned the following rooms</span></p>
       <p class="no-results hidden">We are very sorry, but we found no matches for your search. Please modify your search to find available rooms.</p>
      </section>
     <section class="customer-dashboard">
-      <!-- THIS IS WHERE PREVIOUS AND UPCOMING BOOKINGS SHOULD SHOW-->
+      <!-- THIS IS WHERE PAST AND FUTURE BOOKINGS GO -->
+      <article class="past-bookings-box">
+        <h3 class="past-bookings">Your Past Bookings</h3>
+      </article>
+      <article class="future-bookings-box"></article>
+        <h3 class="future-bookings">Your Upcoming Bookings</h3>
     </section>
   </main>
 </body>

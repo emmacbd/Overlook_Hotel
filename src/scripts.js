@@ -5,10 +5,15 @@ import './css/styles.css';
 import './src/images/overlook.jpeg'
 
 //QUERY SELECTORS
+const bookingButton = document.querySelector(".book-button");
+const viewBookings = document.querySelector(".customer-bookings");
 const customerDashboard = document.querySelector(".customer-dashboard");
 const searchBox = document.querySelector(".search-results-box")
 const foundResults = document.querySelector(".results-found");
 const noResults = document.querySelector(".no-results");
+const pastBookingsSection = document.querySelect(".past-bookings-box");
+const futureBookingsSection = document.querySelector(".future-bookings-box");
+
 
 
 
