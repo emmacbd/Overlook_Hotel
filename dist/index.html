@@ -9,14 +9,36 @@
 <body>
   <nav class="nav-bar">
     <h1 class="nav">Welcome to Overlook Hotel</h1>
-    <button class="your-bookings-button">View Your Bookings</button>
+    <button class="book-button">BOOK HERE</button>
   </nav>
   <main>
-    <section class="reservation-box">
-      <p>Make A Reservation</p>
-      
+    <section class="create-booking-section hidden">
+      <p>Book A Room</p>
+      <form class="room-type-filter">
+        <fieldset class="booking-box">
+      <legend>Select Desired Room By Type</legend>
+      <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="residential">Residential Suite</label>
+
+      <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="junior">Junior Suite</label>
+
+      <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="suite">Suite</label>
+
+      <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="single">Single Room</label>
+
+      <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="any">Any Type</label>
+    </fieldset>
+    <div class="date-box">
+      <label for="dateSelection">Check-In Date:</label>
+      <input type="date" id="dateSelection" name="check-in-date" value="" min="">
+    </div>
+      <button class="find-room-button">Find Room</button>
+      <button class="clear-search" type="reset">Clear Search</button>
+    </form>
     </section>
   </main>
-  </body>
+    <section class="customer-dashboard">
+      <!-- THIS IS WHERE PREVIOUS AND UPCOMING BOOKINGS SHOULD SHOW-->
+    </section>
+</body>
 <script src="bundle.js"></script>
 </html>
