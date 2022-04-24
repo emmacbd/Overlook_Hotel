@@ -40,6 +40,11 @@ it('Should have a list of bookings', () => {
     expect(hotel.availableRooms).to.have.a.lengthOf(4)
   });
 
+  it('Should have a method to sort available rooms by type', () => {
+    hotel.getAvailableRooms("2022/04/23")
+    let filteredRooms = hotel.filterRoomsByType("single room")
+    expect(filteredRooms).to.have.a.lengthOf(2);
+  });
 
 
 });
