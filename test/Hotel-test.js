@@ -3,8 +3,10 @@ import Hotel from '../src/classes/Hotel'
 import Room from '../src/classes/Room'
 import Booking from '../src/classes/Booking'
 import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
+const dayjs = require('dayjs');
+let currentDate = dayjs().format("YYYY/MM/DD");
 
-describe('Room', () => {
+describe('Hotel', () => {
   let room1, room2, booking1, hotel;
 
   beforeEach( () => {
@@ -23,15 +25,21 @@ it('Should have a list of bookings', () => {
   expect(hotel.bookings).to.equal(sampleBookings)
 });
 
-it('Should have a method to retrieve booking information', () => {
-  let foundBooking = hotel.getBooking(booking1);
-
-  expect(foundBooking.number).to.equal(15);
-  expect(foundBooking.bidet).to.equal(false);
+ it('Should have a method to find unavailable rooms', () => {
+   hotel.getUnavailableRooms("2022/04/23");
+   expect(hotel.unavailableRooms[0]).to.deep.equal({
+    id: '5fwrgu4i7k55hl6sz',
+    userID: 9,
+    date: '2022/04/23',
+    roomNumber: 15
+  });
 });
 
- // it('Should have a method to find available rooms', () => {
- //   let availableRooms =
- // });
+  it('Should have a method to find available rooms', () => {
+    hotel.getAvailableRooms("2022/04/23");
+    expect(hotel.availableRooms).to.have.a.lengthOf(4)
+  });
+
+
 
 });

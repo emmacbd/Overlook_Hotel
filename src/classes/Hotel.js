@@ -13,20 +13,27 @@ class Hotel {
     this.rooms = hotelRooms;
     this.bookings = hotelBookings;
     this.customers = hotelCustomers;
+    this.unavailableRooms = [];
     this.availableRooms;
   }
 
-//SOMEHOW GET AN IF STATEMENT IF NO RESULTS FOUND ??? WTF
-getBooking(hotelBookings){
-   return this.rooms.filter(room =>
-    room.number === hotelBookings.roomNumber)
+getUnavailableRooms(chosenDate) {
+  return this.unavailableRooms = this.bookings.filter(booking => {
+    return chosenDate === booking.date
+  });
 }
 
-
-
-//filter room by type method - param of roomtype, filter rooms array by roomtype but also will need check available rooms before returned filtered room by type FUCCK
-
-
+getAvailableRooms(chosenDate) {
+  this.getUnavailableRooms(chosenDate)
+  let unavailRoomNums = this.unavailableRooms.map(booking => booking.roomNumber)
+  let freeRooms = this.rooms.reduce((acc, room) => {
+    if(!unavailRoomNums.includes(room.number)){
+      acc.push(room)
+    }
+    return acc
+  },[])
+   this.availableRooms = freeRooms
+ }
 }
 
 
