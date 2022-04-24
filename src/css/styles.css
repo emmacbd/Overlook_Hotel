@@ -30,6 +30,19 @@ main {
   overflow-y: scroll;
 }
 
+.book-button, .customer-bookings {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+}
+
 .customer-dashboard {
   display:flex;
   flex-direction:column;
@@ -66,6 +79,12 @@ main {
   height: 30%;
 }
 
+.search-results-box {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+}
 
 .hidden {
   display: none;

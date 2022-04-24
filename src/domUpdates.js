@@ -7,16 +7,18 @@ let currentDate = dayjs().format("YYYY/MM/DD");
 let domUpdates = {
 
 //HIDE AND SHOW
-hide(elements) {
-  elements.forEach(element =>
-  element.classList.add("hidden"));
+hide(element) {
+  element.classList.add("hidden");
 },
 
-show(elements) {
-  elements.forEach(element =>
-  element.classList.remove("hidden"));
+show(element) {
+  element.classList.remove("hidden");
 },
 
+toggle(element) {
+  element.classList.toggle("hidden");
+
+}
 //CUSTOMER DASHBOARD
 
 

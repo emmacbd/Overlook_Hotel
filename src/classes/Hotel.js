@@ -22,7 +22,7 @@ class Hotel {
     }
       return acc
     },[])
-    this.availableRooms = freeRooms
+    return this.availableRooms = freeRooms
   }
 
   filterRoomsByType(roomChoice){
