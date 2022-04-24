@@ -1,10 +1,11 @@
 * {
   border: 2px solid red;
+  font-family: 'Shippori Antique B1', sans-serif;
 }
 
 
 body {
-  /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+  /* background-image: url('./src/images/overlook.jpeg'); */
   margin: 0px;
   top: 0;
   bottom: 0;
@@ -17,12 +18,8 @@ body {
 
 .nav-bar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  border-bottom: solid rgb(183, 183, 249) 9px;
-  padding: 0px;
-  height: 53px;
-  box-shadow: 2px 2px 10px grey;
 }
 
 main {
@@ -37,9 +34,6 @@ main {
     cursor: pointer;
     margin: 20px;
     height: 55px;
-    text-align:center;
-    border: none;
-    background-size: 300% 100%;
     border-radius: 50px;
 }
 
@@ -77,6 +71,28 @@ main {
   overflow-y: scroll;
   width: 30%;
   height: 30%;
+}
+
+.create-booking-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.search-results {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow-y: scroll;
+  margin-top: 4%;
+}
+
+.available-room-box {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
 }
 
 .search-results-box {
