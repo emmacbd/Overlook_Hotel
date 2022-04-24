@@ -24,7 +24,7 @@ describe('Booking', () => {
   });
 
   it('Should have a date', () => {
-    expect(booking1.date).to.equal(currentDate)
+    expect(booking1.date).to.equal("2022/04/23")
   });
 
   it('Should have a room number', () => {
