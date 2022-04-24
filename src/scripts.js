@@ -3,15 +3,12 @@ import './css/styles.css';
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
-import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
-import domUpdates from './domUpdates.js';
+// import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
+// import domUpdates from './domUpdates.js';
+import { fetchData } from './apiCalls';
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
-console.log("sample rooms", sampleRooms);
-console.log("sample people", sampleCustomers);
-console.log("sample booking", sampleBookings);
-// An example of how you tell webpack to use a CSS (SCSS) file
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 // import './src/images/overlook.jpeg'
@@ -32,36 +29,45 @@ const custSpent = document.getElementById("totalSpent");
 
 
 //GLOBAL VARIABLES
-let hotel = new Hotel(sampleRooms, sampleBookings);
-let customer = new Customer(sampleCustomers[2]);
+let hotel, customer, roomData, bookingData, customersData;
 
 //FUNCTIONS
 
+const fetchAllData = () => {
+  Promise.all([fetchData("rooms"), fetchData("bookings"), fetchData("customers")])
+    .then(data => {
+      assignData(data);
+      displayDashboard();
+    })
+    .catch(err => console.log(err));
+}
 
+const assignData = (response) => {
+    roomData = response[0].rooms;
+    bookingData = response[1].bookings;
+    customersData = response[2].customers;
+    hotel = new Hotel(roomData, bookingData, customersData);
+}
 
-// const getCustomer = (sampleCustomers) => {
-//   user = new Customer(sampleCustomers[0])
-//   this.displayDashboard()
-// }
-const getCustomerInfo = (currentDate, sampleBookings, customer) => {
-  customer.getBookings(sampleBookings);
+const getCustomerInfo = (currentDate, hotel) => {
+  customer = new Customer(customersData[25]);
+
+  customer.getBookings(bookingData);
 
   customerName.innerText = `${customer.name}!`;
-  custSpent.innerHTML = `$${customer.calculateTotalSpent(sampleBookings, sampleRooms)}`;
+  custSpent.innerHTML = `$${customer.calculateTotalSpent(bookingData, roomData)}`;
   displayPastBookings();
   displayFutureBookings();
 }
 
 const displayDashboard = () => {
-
-  getCustomerInfo(currentDate, sampleBookings, customer);
-
+  getCustomerInfo(currentDate, hotel);
 }
 
 
 
 const displayPastBookings = () => {
-  let rooms = hotel.rooms;
+  let rooms = roomData;
   let customerPastBookings = customer.getPastBookings(currentDate)
   pastBookingSection.innerHTML = "";
   customerPastBookings.forEach(booking => {
@@ -71,7 +77,7 @@ const displayPastBookings = () => {
 
   pastBookingSection.innerHTML += `
     <article class="past-room-box">
-      <img class="past-room-img" src="" alt="${pastRoom.roomType}"
+      <img class="past-room-img" src="" alt="${pastRoom.roomType}">
       <div class="past-booking-info">
         <p id="past-room-type">${pastRoom.roomType}</p>
         <p id="past-room-date">${booking.date}</p>
@@ -93,7 +99,7 @@ const displayFutureBookings = () => {
 
       futureBookingSection.innerHTML += `
       <article class="future-room-box">
-        <img class="future-room-img" src="" alt="${futureRoom.roomType}"
+        <img class="future-room-img" src="" alt="${futureRoom.roomType}">
         <div class="future-booking-info">
           <p id="future-room-type">${futureRoom.roomType}</p>
           <p id="future-room-date">${booking.date}</p>
@@ -107,7 +113,7 @@ const displayFutureBookings = () => {
 
 //EVENT LISTENERS
 
-window.addEventListener('load', displayDashboard);
+window.addEventListener('load', fetchAllData);
 //need to get a user
 //what about with login fuck idk
 //get users bookings

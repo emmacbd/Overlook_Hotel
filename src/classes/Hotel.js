@@ -8,20 +8,18 @@
 
 //book room method - need date input
 
-//
-
-//
 class Hotel {
-  constructor(hotelRooms, hotelBookings) {
+  constructor(hotelRooms, hotelBookings, hotelCustomers) {
     this.rooms = hotelRooms;
     this.bookings = hotelBookings;
+    this.customers = hotelCustomers;
     this.availableRooms;
   }
 
 //SOMEHOW GET AN IF STATEMENT IF NO RESULTS FOUND ??? WTF
-getBooking(bookingInfo){
+getBooking(bookings){
    return this.rooms.find(room =>
-    room.number === bookingInfo.roomNumber)
+    room.number === bookings.roomNumber)
 }
 
 
@@ -32,4 +30,4 @@ getBooking(bookingInfo){
 }
 
 
-export default Hotel
+export default Hotel;

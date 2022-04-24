@@ -1,7 +1,6 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
-
 class Customer {
   constructor(customer) {
     this.id = customer.id;
