@@ -11,7 +11,7 @@ describe('Room', () => {
     room1 = new Room(sampleRooms[0]);
     room2 = new Room(sampleRooms[1]);
     booking1 = new Booking(sampleBookings[0]);
-    hotel = new Hotel(sampleRooms, sampleBookings);
+    hotel = new Hotel(sampleRooms, sampleBookings, sampleCustomers);
   });
 
 

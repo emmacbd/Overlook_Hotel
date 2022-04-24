@@ -70,17 +70,16 @@ describe('Customer', () => {
 
   it('Should have method to determine customer\'s previous bookings', () => {
     customer3.getBookings(sampleBookings)
-    customer3.getPastBookings(currentDate, sampleBookings);
+    let past = customer3.getPastBookings(currentDate);
 
-    expect(customer3.pastBookings).to.have.lengthOf(1);
-    expect(customer3.pastBookings[0].roomNumber).to.deep.equal(23);
+    expect(past).to.have.lengthOf(2);
+    expect(past[0].roomNumber).to.deep.equal(15);
   });
 
   it('Should have a method to determine customer\'s upcoming bookings', () => {
     customer3.getBookings(sampleBookings);
-    customer3.getUpcomingBookings(currentDate, sampleBookings);
+    let upcoming = customer3.getUpcomingBookings(currentDate);
 
-    expect(customer3.upcomingBookings).to.have.lengthOf(1);
-    expect(customer3.upcomingBookings[0].roomNumber).to.deep.equal(15);
+    expect(upcoming).to.have.lengthOf(0);
   });
 });
