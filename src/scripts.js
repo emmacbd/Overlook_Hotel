@@ -79,9 +79,9 @@ const displayPastBookings = () => {
     <article class="past-room-box">
       <img class="past-room-img" src="" alt="${pastRoom.roomType}">
       <div class="past-booking-info">
-        <p id="past-room-type">${pastRoom.roomType}</p>
-        <p id="past-room-date">${booking.date}</p>
-        <p id="past-room-cost">${pastRoom.costPerNight}</p>
+        <p id="past-room-type">Room Type: ${pastRoom.roomType}</p>
+        <p id="past-room-date">Booking Date: ${booking.date}</p>
+        <p id="past-room-cost">Cost Per Night: ${pastRoom.costPerNight}</p>
       </div>
     </article>
   `
@@ -101,9 +101,9 @@ const displayFutureBookings = () => {
       <article class="future-room-box">
         <img class="future-room-img" src="" alt="${futureRoom.roomType}">
         <div class="future-booking-info">
-          <p id="future-room-type">${futureRoom.roomType}</p>
-          <p id="future-room-date">${booking.date}</p>
-          <p id="future-room-cost">${futureRoom.costPerNight}</p>
+          <p id="future-room-type">Room Type: ${futureRoom.roomType}</p>
+          <p id="future-room-date">Booking Date: ${booking.date}</p>
+          <p id="future-room-cost">Cost Per Night: ${futureRoom.costPerNight}</p>
         </div>
       </article>
       `

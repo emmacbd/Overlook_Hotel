@@ -27,41 +27,46 @@ body {
 
 main {
   height:100%;
-  /* display:grid;
-  justify-content: center; */
+  overflow-y: scroll;
 }
 
 .customer-dashboard {
   display:flex;
   flex-direction:column;
 }
-
-.pastBookingContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  overflow-y: scroll;
-  max-height: 88vh;
-  min-height: 50%;
-  width: 100%;
-}
-
-.pastBookingSection {
+.customer-info {
   display:flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.futureBookingContainer {
+.past-bookings, .future-bookings {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.future-bookings {
+  flex-direction: column;
+}
+ .past-bookings-box, .future-bookings-box {
+  display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
   overflow-y: scroll;
-  max-height: 88vh;
-  min-height: 50%;
-  width: 100%;
-}
-.futureBookingSection {
 
 }
+
+.past-room-box, .future-room-box {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  width: 30%;
+  height: 30%;
+}
+
+
 .hidden {
   display: none;
 }
