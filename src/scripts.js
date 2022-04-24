@@ -212,7 +212,6 @@ const showDateSearch = (datePicked) => {
 
 const grabFilteredByType = () => {
   let grabRadio = document.querySelector('input[name="room-type-options"]:checked');
-  console.log(!grabRadio);
   if(!grabRadio) {
     domUpdates.show(invalidTypeMsg);
   } else {
