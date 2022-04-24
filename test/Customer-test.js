@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import Customer from '../src/classes/Customer'
-import Booking from '../src/classes/Booking'
+import Customer from '../src/classes/Customer';
+import Booking from '../src/classes/Booking';
 import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 
 const dayjs = require('dayjs');
@@ -69,7 +69,7 @@ describe('Customer', () => {
   });
 
   it('Should have method to determine customer\'s previous bookings', () => {
-    // customer3.getBookings(sampleBookings)
+    customer3.getBookings(sampleBookings)
     customer3.getPastBookings(currentDate, sampleBookings);
 
     expect(customer3.pastBookings).to.have.lengthOf(1);
@@ -77,7 +77,7 @@ describe('Customer', () => {
   });
 
   it('Should have a method to determine customer\'s upcoming bookings', () => {
-    // customer3.getBookings(sampleBookings);
+    customer3.getBookings(sampleBookings);
     customer3.getUpcomingBookings(currentDate, sampleBookings);
 
     expect(customer3.upcomingBookings).to.have.lengthOf(1);

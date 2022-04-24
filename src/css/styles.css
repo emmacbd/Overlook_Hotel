@@ -1,4 +1,72 @@
+* {
+  border: 2px solid red;
+}
+
+
 body {
-  background-image: url('src/images/overlook.jpeg');
   /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+  margin: 0px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: solid rgb(183, 183, 249) 9px;
+  padding: 0px;
+  height: 53px;
+  box-shadow: 2px 2px 10px grey;
+}
+
+main {
+  height:100%;
+  overflow-y: scroll;
+}
+
+.customer-dashboard {
+  display:flex;
+  flex-direction:column;
+}
+.customer-info {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.past-bookings, .future-bookings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.future-bookings {
+  flex-direction: column;
+}
+ .past-bookings-box, .future-bookings-box {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+
+}
+
+.past-room-box, .future-room-box {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  width: 30%;
+  height: 30%;
+}
+
+
+.hidden {
+  display: none;
 }

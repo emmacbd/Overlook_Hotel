@@ -8,30 +8,26 @@
 
 //book room method - need date input
 
-//
-
-//
 class Hotel {
-  constructor(hotelRooms, hotelBookings) {
+  constructor(hotelRooms, hotelBookings, hotelCustomers) {
     this.rooms = hotelRooms;
     this.bookings = hotelBookings;
+    this.customers = hotelCustomers;
     this.availableRooms;
   }
 
 //SOMEHOW GET AN IF STATEMENT IF NO RESULTS FOUND ??? WTF
-getBooking(bookingInfo){
+getBooking(bookings){
    return this.rooms.find(room =>
-    room.number === bookingInfo.roomNumber)
-}
-
-///check bookings array and compare with input date of user wtf how ok
-//dayjs
-//
-
-//filter room by type method dear god - param of roomtype, filter rooms array by roomtype but also will need check available rooms before returned filtered room by type FUCCK
-
-
+    room.number === bookings.roomNumber)
 }
 
 
-export default Hotel
+
+//filter room by type method - param of roomtype, filter rooms array by roomtype but also will need check available rooms before returned filtered room by type FUCCK
+
+
+}
+
+
+export default Hotel;
