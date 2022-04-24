@@ -1,10 +1,3 @@
-//need book room method, which would first call method that finds available rooms?
-
-//need methods to find available rooms/determine unavailable
-
-//filter room by type method
-
-
 class Hotel {
   constructor(hotelRooms, hotelBookings, hotelCustomers) {
     this.rooms = hotelRooms;
