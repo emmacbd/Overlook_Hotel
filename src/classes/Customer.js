@@ -37,8 +37,8 @@ class Customer {
         })
         return acc
     },0)
-      this.totalSpent = totalAmount
-      return totalAmount
+      this.totalSpent = Math.round(totalAmount * 100) / 100;
+      return this.totalSpent
   }
 
 

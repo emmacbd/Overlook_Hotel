@@ -17,11 +17,18 @@ show(element) {
 
 toggle(element) {
   element.classList.toggle("hidden");
-
-}
+},
 //CUSTOMER DASHBOARD
 
 
+//ERROR HANDLINGS
+happyReservation() {
+  
+},
+
+sadReservation() {
+
+}
 
 
 //BOOKING PAGE

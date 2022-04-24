@@ -7,7 +7,7 @@ import Booking from '../src/classes/Booking';
 
 // import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 import domUpdates from './domUpdates.js';
-import { fetchData } from './apiCalls';
+import { fetchData, postBooking } from './apiCalls';
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
@@ -15,15 +15,17 @@ let currentDate = dayjs().format("YYYY/MM/DD");
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 
 //QUERY SELECTORS
-const bookingButton = document.querySelector(".book-button");
+const bookingSectionButton = document.querySelector(".book-button");
 const viewBookings = document.querySelector(".customer-bookings");
 const customerDashboard = document.querySelector(".customer-dashboard");
 const createBooking = document.querySelector(".create-booking-section");
+const bookButton = document.querySelector('.book-room-button');
 const searchResultsContainer = document.querySelector(".search-results");
 const showFilterButton = document.querySelector(".filter-types-button");
 const filtersBox = document.querySelector(".room-type-filter");
 const foundResults = document.querySelector(".results-found");
 const noResults = document.querySelector(".no-results");
+const postBookingButton = document.querySelector(".book-room-button");
 const pastBookingContainer = document.querySelector(".past-bookings");
 const pastBookingSection = document.querySelector(".past-bookings-box");
 const futureBookingContainer = document.querySelector(".future-bookings");
@@ -72,11 +74,31 @@ const getCustomerInfo = (currentDate, hotel) => {
 }
 
 
+const grabBooking = (event, roomData) => {
+  if (event.target.className === "book-room-button"){
+    let chosenRoom = roomData.find(room => {
+      return room.number === parseInt(event.target.id)
+    })
+    generateBooking(chosenRoom)
+  }
+}
+
+const generateBooking = (chosenRoom) => {
+  let bookedDate = selectedDate.split('-').join('/');
+  const bookingInfo = {
+    userID: customer.id,
+    date: bookedDate,
+    roomNumber: chosenRoom.number,
+  }
+
+  postBooking(bookingInfo)
+}
+
 //CUSTOMER DASHBOARD FUNCTIONS
 const displayDashboard = () => {
   domUpdates.show(customerDashboard)
   domUpdates.hide(viewBookings)
-  domUpdates.show(bookingButton)
+  domUpdates.show(bookingSectionButton)
   domUpdates.hide(createBooking)
   domUpdates.hide(searchResultsContainer)
   getCustomerInfo(currentDate, hotel);
@@ -132,7 +154,7 @@ const displayFutureBookings = () => {
 const showBookingPage = () => {
   domUpdates.hide(customerDashboard)
   domUpdates.show(viewBookings)
-  domUpdates.hide(bookingButton)
+  domUpdates.hide(bookingSectionButton)
   domUpdates.show(createBooking)
 }
 
@@ -157,7 +179,7 @@ const showDateSearch = (datePicked) => {
   domUpdates.show(viewBookings)
   domUpdates.hide(foundResults)
   domUpdates.hide(noResults)
-  domUpdates.hide(bookingButton)
+  domUpdates.hide(bookingSectionButton)
   domUpdates.show(createBooking)
   domUpdates.show(searchResultsContainer)
 
@@ -245,8 +267,12 @@ const displayByType = (roomType) => {
 
 window.addEventListener('load', fetchAllData);
 
-bookingButton.addEventListener('click', showBookingPage);
+bookingSectionButton.addEventListener('click', showBookingPage);
 
+// postBookingButton.addEventListener('click', createBooking);
+searchResultsContainer.addEventListener('click', (event) => {
+  grabBooking(event, roomData)
+});
 viewBookings.addEventListener('click', displayDashboard);
 
 dateButton.addEventListener('click', (event) => {
@@ -260,3 +286,5 @@ filterByTypeButton.addEventListener('click', (event) => {
 });
 
 showFilterButton.addEventListener('click', showFilterTypes);
+
+export {customer, hotel}
