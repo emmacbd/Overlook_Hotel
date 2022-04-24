@@ -36,12 +36,31 @@ main {
   flex-direction:column;
 }
 
-.pastBookingSection {
-
+.pastBookingContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+  max-height: 88vh;
+  min-height: 50%;
+  width: 100%;
 }
 
+.pastBookingSection {
+  display:flex;
+}
+
+.futureBookingContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+  max-height: 88vh;
+  min-height: 50%;
+  width: 100%;
+}
 .futureBookingSection {
-  
+
 }
 .hidden {
   display: none;
