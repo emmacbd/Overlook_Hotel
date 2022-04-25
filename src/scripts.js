@@ -5,10 +5,10 @@ import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
 // import './src/images/overlook.jpeg'
-
+import './images/room.png'
 // import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 import domUpdates from './domUpdates.js';
-import { fetchData, postBooking } from './apiCalls';
+import { fetchData, postBooking, displayErrorMessage } from './apiCalls';
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 
@@ -40,12 +40,12 @@ const datePicked = document.getElementById("dateSelection");
 const invalidDateMsg = document.querySelector(".invalid-date-msg");
 const invalidTypeMsg = document.querySelector(".invalid-type-msg");
 const filterByTypeButton = document.querySelector(".filter-button");
+
+
 //GLOBAL VARIABLES
 let hotel, customer, roomData, bookingData, customersData, selectedDate;
 
 //FUNCTIONS
-
-
 //FETCH, ASSIGN, POST
 const fetchAllData = () => {
   Promise.all([fetchData("rooms"), fetchData("bookings"), fetchData("customers")])
@@ -53,7 +53,7 @@ const fetchAllData = () => {
       assignData(data);
       displayDashboard();
     })
-    .catch(err => console.log(err));
+    .catch(err => displayErrorMessage());
 }
 
 const assignData = (response) => {
@@ -90,9 +90,22 @@ const generateBooking = (chosenRoom) => {
     date: bookedDate,
     roomNumber: chosenRoom.number,
   }
-  console.log("bookinginfo In", bookingInfo);
   postBooking(bookingInfo)
 }
+
+const refreshBookings = () => {
+  Promise.all([
+      fetchData('rooms'),
+      fetchData('bookings'),
+      fetchData('customers')
+    ]).then(data => {
+      assignData(data)
+      getCustomerInfo(currentDate, hotel)
+      domUpdates.happyReservation();
+
+    })
+  }
+
 
 //CUSTOMER DASHBOARD FUNCTIONS
 const displayDashboard = () => {
@@ -116,7 +129,7 @@ const displayPastBookings = () => {
 
   pastBookingSection.innerHTML += `
     <article class="past-room-box">
-      <img class="past-room-img" src="" alt="${pastRoom.roomType}">
+      <img class="past-room-img" src="./images/room.png" alt="${pastRoom.roomType}">
       <div class="past-booking-info">
         <p id="past-room-type">Room Type: ${pastRoom.roomType}</p>
         <p id="past-room-date">Booking Date: ${booking.date}</p>
@@ -138,7 +151,7 @@ const displayFutureBookings = () => {
 
       futureBookingSection.innerHTML += `
       <article class="future-room-box">
-        <img class="future-room-img" src="" alt="${futureRoom.roomType}">
+        <img class="future-room-img" src="./images/room.png"  alt="${futureRoom.roomType}">
         <div class="future-booking-info">
           <p id="future-room-type">Room Type: ${futureRoom.roomType}</p>
           <p id="future-room-date">Booking Date: ${booking.date}</p>
@@ -311,5 +324,6 @@ export {
   pastBookingSection,
   showBookingPage,
   displayDashboard,
-  createBooking
+  createBooking,
+  refreshBookings
 }

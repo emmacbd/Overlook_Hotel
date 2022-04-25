@@ -93,15 +93,23 @@ cursor:pointer;
   height:100vh;
 }
 
+.past-booking-info, .future-booking-info {
+  width:40%
+}
+
+.past-room-ing, .future-room-ing {
+  width:70%;
+  height:100%;
+}
+
 .past-room-box, .future-room-box {
   background-color: #F8F8F9;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 30%;
-  height: 30%;
-  margin-bottom:2%;
-  
+  flex-wrap: nowrap;
+  width: 35%;
+  height: 38%;
+  margin-bottom: 2%;
+
 }
 
 .create-booking-section {

@@ -26,15 +26,15 @@ toggle(element) {
 
 //ERROR HANDLINGS
 happyReservation() {
-  hide(createBooking);
+  this.hide(createBooking);
   searchResultsContainer.innerHTML = "";
-  hide(foundResults);
+  this.hide(foundResults);
   searchResultsContainer.innerHTML += `<h2 class="good-book">Thank you for booking a room with Overlook, we look forward to seeing you soon!</h2>`
   // futureBookingSection.innerHTML = "";
   // pastBookingSection.innerHTML = "";
-  setTimeout(() => {
-    displayDashboard()
-  },1700)
+  // setTimeout(() => {
+  //   displayDashboard()
+  // },1700)
 
   // displayDashboard();
 },
