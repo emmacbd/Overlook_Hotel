@@ -1,10 +1,11 @@
 * {
-  border: 2px solid red;
+  border: 1px solid blue;
+  font-family: 'Shippori Antique B1', sans-serif;
 }
 
 
 body {
-  /* background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%); */
+  /* background-image: url('./src/images/overlook.jpeg'); */
   margin: 0px;
   top: 0;
   bottom: 0;
@@ -16,13 +17,10 @@ body {
 }
 
 .nav-bar {
+  background-color: #BE7BC0;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  border-bottom: solid rgb(183, 183, 249) 9px;
-  padding: 0px;
-  height: 53px;
-  box-shadow: 2px 2px 10px grey;
 }
 
 main {
@@ -30,10 +28,28 @@ main {
   overflow-y: scroll;
 }
 
+button {
+cursor:pointer;
+}
+
+.book-button, .customer-bookings {
+  width: 150px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  border-radius: 50px;
+}
+
+.book-button:hover, .customer-bookings:hover {
+  background-color:#8FD6EC;
+}
 .customer-dashboard {
   display:flex;
   flex-direction:column;
 }
+
 .customer-info {
   display:flex;
   flex-direction: column;
@@ -41,31 +57,78 @@ main {
 }
 
 .past-bookings, .future-bookings {
+  background-color: #8FD6EC;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
 }
 
-.future-bookings {
+/* .future-bookings {
   flex-direction: column;
-}
+} */
  .past-bookings-box, .future-bookings-box {
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
   overflow-y: scroll;
-
+  width:100%;
+  height:100vh;
 }
 
 .past-room-box, .future-room-box {
+  background-color: #F8F8F9;
   display: flex;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  justify-content: space-evenly;
   width: 30%;
   height: 30%;
 }
 
+.create-booking-section {
+  background-color: #8FD6EC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5%;
+  height: 30%;
+
+}
+
+.invalid-date-msg {
+  margin-top:-4%;
+}
+
+.date-box {
+  height:14%;
+}
+
+.type-filter-box {
+
+}
+
+.search-results {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow-y: scroll;
+  margin-top: 4%;
+}
+
+.available-room-box {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.search-results-box {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: scroll;
+}
 
 .hidden {
   display: none;

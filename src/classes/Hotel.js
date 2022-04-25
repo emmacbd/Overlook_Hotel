@@ -1,32 +1,35 @@
-//rooms, bookings, available rooms, unavailable rooms, type of room
-
-//need book room method, which would first call method that finds available rooms?
-
-//need methods to find available rooms/determine unavailable
-
-//filter room by type method
-
-//book room method - need date input
-
 class Hotel {
   constructor(hotelRooms, hotelBookings, hotelCustomers) {
     this.rooms = hotelRooms;
     this.bookings = hotelBookings;
     this.customers = hotelCustomers;
+    this.unavailableRooms = [];
     this.availableRooms;
   }
 
-//SOMEHOW GET AN IF STATEMENT IF NO RESULTS FOUND ??? WTF
-getBooking(bookings){
-   return this.rooms.find(room =>
-    room.number === bookings.roomNumber)
+  getUnavailableRooms(chosenDate) {
+    return this.unavailableRooms = this.bookings.filter(booking => {
+      return chosenDate === booking.date
+  });
 }
 
+  getAvailableRooms(chosenDate) {
+    this.getUnavailableRooms(chosenDate)
+    let unavailRoomNums = this.unavailableRooms.map(booking => booking.roomNumber)
+    let freeRooms = this.rooms.reduce((acc, room) => {
+      if(!unavailRoomNums.includes(room.number)){
+      acc.push(room)
+    }
+      return acc
+    },[])
+    return this.availableRooms = freeRooms
+  }
 
-
-//filter room by type method - param of roomtype, filter rooms array by roomtype but also will need check available rooms before returned filtered room by type FUCCK
-
-
+  filterRoomsByType(roomChoice){
+    return this.availableRooms.filter(room => {
+      return roomChoice === room.roomType
+    });
+  }
 }
 
 

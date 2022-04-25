@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&family=Shippori+Antique+B1&display=swap" rel="stylesheet">
+  <!-- <link href="./src/images/overlook.jpeg"> -->
+  <!-- <link rel="stylesheet" href="style.css"> -->
   <title>Overlook Hotel</title>
 </head>
 <body>
@@ -15,10 +18,19 @@
   <main>
     <section class="create-booking-section hidden">
       <p>Book A Room</p>
-      <form class="room-type-filter">
-        <fieldset class="booking-box">
+      <p class="invalid-date-msg hidden">Please select a date!</p>
+        <form class="date-box">
+          <label for="dateSelection">Check-In Date:</label>
+          <input required type="date" id="dateSelection" name="check-in-date" value="" min="2022-04-26">
+          <button class="date-button">Search By Date</button>
+          <button class="clear-date-search" type="reset">Clear Search</button>
+        </form>
+        <button class="filter-types-button" value="FilterRoomsButton">Filter Rooms By Type</button>
+        <form class="room-type-filter hidden">
+          <fieldset class="type-filter-box">
           <legend>Select Desired Room By Type</legend>
-          <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="residential">Residential Suite</label>
+            <p class="invalid-type-msg hidden">Please select a room type!</p>
+          <label><input required type="radio" name="room-type-options" class="reservation-box-radio" id="residential">Residential Suite</label>
 
           <label><input type="radio" name="room-type-options" class="reservation-box-radio" id="junior">Junior Suite</label>
 
@@ -28,16 +40,12 @@
 
           <label><input type="radio" name="room-type-options"   class="reservation-box-radio" id="any">Any Type</label>
         </fieldset>
-        <div class="date-box">
-          <label for="dateSelection">Check-In Date:</label>
-          <input type="date" id="dateSelection" name="check-in-date" value="" min="">
-        </div>
-        <button class="find-room-button">Find Room</button>
-        <button class="clear-search" type="reset">Clear Search</button>
+        <button class="filter-button">Find My Room</button>
+        <button class="clear-room-search" type="reset">Clear Search</button>
     </form>
     </section>
-    <section class="search-results-box hidden">
-      <p class="results-found">Your search returned the following rooms</span></p>
+    <section class="search-results hidden">
+      <p class="results-found hidden">Your search returned the following rooms:</span></p>
       <p class="no-results hidden">We are very sorry, but we found no matches for your search. Please modify your search to find available rooms.</p>
      </section>
     <section class="customer-dashboard">
