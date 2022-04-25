@@ -18,11 +18,11 @@
   <main>
     <section class="create-booking-section hidden">
       <p>Book A Room</p>
+      <p class="invalid-date-msg hidden">Please select a date!</p>
         <form class="date-box">
           <label for="dateSelection">Check-In Date:</label>
           <input required type="date" id="dateSelection" name="check-in-date" value="" min="2022-04-26">
           <button class="date-button">Search By Date</button>
-          <p class="invalid-date-msg hidden">Please select a date!</p>
           <button class="clear-date-search" type="reset">Clear Search</button>
         </form>
         <button class="filter-types-button" value="FilterRoomsButton">Filter Rooms By Type</button>
@@ -40,7 +40,7 @@
 
           <label><input type="radio" name="room-type-options"   class="reservation-box-radio" id="any">Any Type</label>
         </fieldset>
-        <button class="filter-button">Filter by Room Type</button>
+        <button class="filter-button">Find My Room</button>
         <button class="clear-room-search" type="reset">Clear Search</button>
     </form>
     </section>

@@ -56,17 +56,16 @@ const fetchAllData = () => {
 }
 
 const assignData = (response) => {
-    roomData = response[0].rooms;
-    bookingData = response[1].bookings;
-    customersData = response[2].customers;
-    hotel = new Hotel(roomData, bookingData, customersData);
+  roomData = response[0].rooms;
+  bookingData = response[1].bookings;
+  customersData = response[2].customers;
+  hotel = new Hotel(roomData, bookingData, customersData);
 }
 
 const getCustomerInfo = (currentDate, hotel) => {
   customer = new Customer(customersData[25]);
 
   customer.getBookings(bookingData);
-
   customerName.innerText = `${customer.name}!`;
   custSpent.innerHTML = `$${customer.calculateTotalSpent(bookingData, roomData)}`;
   displayPastBookings();
@@ -160,6 +159,8 @@ const showBookingPage = () => {
 
 const showFilterTypes = () => {
   domUpdates.toggle(filtersBox)
+  domUpdates.hide(invalidTypeMsg)
+
 }
 
 const confirmDate = (event) => {
@@ -272,6 +273,7 @@ bookingSectionButton.addEventListener('click', showBookingPage);
 searchResultsContainer.addEventListener('click', (event) => {
   grabBooking(event, roomData)
 });
+
 viewBookings.addEventListener('click', displayDashboard);
 
 dateButton.addEventListener('click', (event) => {
@@ -281,6 +283,7 @@ dateButton.addEventListener('click', (event) => {
 
 filterByTypeButton.addEventListener('click', (event) => {
   event.preventDefault();
+  confirmDate(event);
   grabFilteredByType();
 });
 

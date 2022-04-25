@@ -1,5 +1,5 @@
 * {
-  border: 2px solid red;
+  border: 1px solid blue;
   font-family: 'Shippori Antique B1', sans-serif;
 }
 
@@ -17,6 +17,7 @@ body {
 }
 
 .nav-bar {
+  background-color: #BE7BC0;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -27,20 +28,28 @@ main {
   overflow-y: scroll;
 }
 
-.book-button, .customer-bookings {
-    width: 150px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin: 20px;
-    height: 55px;
-    border-radius: 50px;
+button {
+cursor:pointer;
 }
 
+.book-button, .customer-bookings {
+  width: 150px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  border-radius: 50px;
+}
+
+.book-button:hover, .customer-bookings:hover {
+  background-color:#8FD6EC;
+}
 .customer-dashboard {
   display:flex;
   flex-direction:column;
 }
+
 .customer-info {
   display:flex;
   flex-direction: column;
@@ -48,36 +57,55 @@ main {
 }
 
 .past-bookings, .future-bookings {
+  background-color: #8FD6EC;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
 }
 
-.future-bookings {
+/* .future-bookings {
   flex-direction: column;
-}
+} */
  .past-bookings-box, .future-bookings-box {
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
   overflow-y: scroll;
-
+  width:100%;
+  height:100vh;
 }
 
 .past-room-box, .future-room-box {
+  background-color: #F8F8F9;
   display: flex;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  justify-content: space-evenly;
   width: 30%;
   height: 30%;
 }
 
 .create-booking-section {
+  background-color: #8FD6EC;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   margin-top: 5%;
+  height: 30%;
+
+}
+
+.invalid-date-msg {
+  margin-top:-4%;
+}
+
+.date-box {
+  height:14%;
+}
+
+.type-filter-box {
+
 }
 
 .search-results {
