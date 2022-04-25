@@ -1,4 +1,5 @@
 import './css/styles.css';
+import './images/overlook-two.jpg'
 
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
@@ -89,7 +90,7 @@ const generateBooking = (chosenRoom) => {
     date: bookedDate,
     roomNumber: chosenRoom.number,
   }
-
+  console.log("bookinginfo In", bookingInfo);
   postBooking(bookingInfo)
 }
 
@@ -119,7 +120,7 @@ const displayPastBookings = () => {
       <div class="past-booking-info">
         <p id="past-room-type">Room Type: ${pastRoom.roomType}</p>
         <p id="past-room-date">Booking Date: ${booking.date}</p>
-        <p id="past-room-cost">Cost Per Night: ${pastRoom.costPerNight}</p>
+        <p id="past-room-cost">Cost Per Night: $${pastRoom.costPerNight}</p>
       </div>
     </article>
   `
@@ -141,7 +142,7 @@ const displayFutureBookings = () => {
         <div class="future-booking-info">
           <p id="future-room-type">Room Type: ${futureRoom.roomType}</p>
           <p id="future-room-date">Booking Date: ${booking.date}</p>
-          <p id="future-room-cost">Cost Per Night: ${futureRoom.costPerNight}</p>
+          <p id="future-room-cost">Cost Per Night: $${futureRoom.costPerNight}</p>
         </div>
       </article>
       `
@@ -155,6 +156,12 @@ const showBookingPage = () => {
   domUpdates.show(viewBookings)
   domUpdates.hide(bookingSectionButton)
   domUpdates.show(createBooking)
+  domUpdates.hide(invalidDateMsg)
+  domUpdates.hide(invalidTypeMsg)
+  domUpdates.hide(foundResults)
+  domUpdates.hide(noResults)
+  datePicked.value = ""
+
 }
 
 const showFilterTypes = () => {
@@ -174,7 +181,6 @@ const confirmDate = (event) => {
 }
 
 const showDateSearch = (datePicked) => {
-  searchResultsContainer.innerHTML = "";
 
   domUpdates.hide(customerDashboard)
   domUpdates.show(viewBookings)
@@ -185,17 +191,15 @@ const showDateSearch = (datePicked) => {
   domUpdates.show(searchResultsContainer)
 
   selectedDate = datePicked.value.split('-').join('/')
-
-  hotel.getAvailableRooms(selectedDate)
-  if(!hotel.getAvailableRooms(datePicked).length){
-    domUpdates.show(noResults)
-  } else {
-    domUpdates.show(foundResults)
-  }
+  searchResultsContainer.innerHTML = "";
 
   let availableByDateRooms = hotel.getAvailableRooms(selectedDate)
+    if(!availableByDateRooms.length){
+      domUpdates.show(noResults)
+    } else {
+      domUpdates.show(foundResults)
+    }
       availableByDateRooms.forEach(room => {
-
         searchResultsContainer.innerHTML += `
         <article class="available-room-box">
           <div class="booking-info">${room.roomType}</div>
@@ -212,8 +216,10 @@ const showDateSearch = (datePicked) => {
 }
 
 const grabFilteredByType = () => {
+  confirmDate(event);
   let grabRadio = document.querySelector('input[name="room-type-options"]:checked');
   if(!grabRadio) {
+    domUpdates.show(invalidDateMsg)
     domUpdates.show(invalidTypeMsg);
   } else {
     domUpdates.hide(invalidTypeMsg)
@@ -243,8 +249,15 @@ const grabFilteredByType = () => {
 }
 
 const displayByType = (roomType) => {
-  let filteredRooms = hotel.filterRoomsByType(roomType)
   searchResultsContainer.innerHTML = "";
+  let filteredRooms = hotel.filterRoomsByType(roomType)
+  if(!filteredRooms.length){
+    domUpdates.show(noResults)
+    domUpdates.hide(foundResults)
+  } else {
+    domUpdates.show(foundResults)
+    domUpdates.hide(noResults)
+  }
   filteredRooms.forEach(room => {
     searchResultsContainer.innerHTML += `
     <article class="available-room-box">
@@ -289,4 +302,14 @@ filterByTypeButton.addEventListener('click', (event) => {
 
 showFilterButton.addEventListener('click', showFilterTypes);
 
-export {customer, hotel}
+export {
+  customer,
+  hotel,
+  foundResults,
+  noResults,
+  searchResultsContainer, futureBookingSection,
+  pastBookingSection,
+  showBookingPage,
+  displayDashboard,
+  createBooking
+}

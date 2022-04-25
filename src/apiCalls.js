@@ -1,6 +1,7 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
-import {customer, hotel} from './scripts.js'
+import {customer, hotel, showBookingPage} from './scripts.js'
+import domUpdates from "./domUpdates.js"
 
 function fetchData(dataLocation) {
   return fetch(`http://localhost:3001/api/v1/${dataLocation}`)
@@ -17,23 +18,27 @@ function fetchData(dataLocation) {
 function postBooking(bookingInfo) {
   return fetch("http://localhost:3001/api/v1/bookings", {
     method: 'POST',
-    body: JSON.stringify(bookingInfo),
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    body: JSON.stringify(bookingInfo)
   })
   .then(response => {
     if (response.ok) {
+      console.log("bookinginfo out", response);
       fetchData("bookings")
-      customer.bookings.push(bookingInfo)
-      customer.getBookings(hotel.bookings)
+      customer.bookings.push(bookingInfo);
+      domUpdates.happyReservation();
       return response.json()
     } else if (!response.ok){
-      throw Error(response.statusText)
+      throw Error(`Error`)
     }
    })
-  .catch(err => console.log(err));
+  .catch(err => domUpdates.sadReservation());
 }
+
+
+
 
 
 const displayErrorMessage = (err) => {
