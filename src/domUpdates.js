@@ -1,11 +1,16 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
 import {
-  searchResultsContainer, futureBookingSection,
-  pastBookingSection, showBookingPage, displayDashboard, createBooking, foundResults, noResults
-} from './scripts.js'
-
-//QUERY SELECTORS
+  searchResultsContainer,
+  futureBookingSection,
+  pastBookingSection,
+  showBookingPage,
+  displayDashboard,
+  createBooking,
+  foundResults,
+  noResults  
+}
+from './scripts.js'
 
 let domUpdates = {
 
@@ -21,8 +26,6 @@ show(element) {
 toggle(element) {
   element.classList.toggle("hidden");
 },
-//CUSTOMER DASHBOARD
-
 
 //ERROR HANDLINGS
 happyReservation() {

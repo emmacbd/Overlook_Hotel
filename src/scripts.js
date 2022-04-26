@@ -1,19 +1,12 @@
 import './css/styles.css';
-import './images/overlook-two.jpg'
 import './images/room.png'
-
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
-// import './src/images/overlook.jpeg'
-// import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 import domUpdates from './domUpdates.js';
 import { fetchData, postBooking, displayErrorMessage } from './apiCalls';
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
-
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 
 //QUERY SELECTORS
 const bookingMessage = document.querySelector(".booking-msg");
@@ -47,6 +40,7 @@ const filterByTypeButton = document.querySelector(".filter-button");
 let hotel, customer, roomData, bookingData, customersData, selectedDate;
 
 //FUNCTIONS
+
 //FETCH, ASSIGN, POST
 const fetchAllData = () => {
   Promise.all([fetchData("rooms"), fetchData("bookings"), fetchData("customers")])
@@ -104,7 +98,6 @@ const refreshBookings = () => {
       getCustomerInfo(currentDate, hotel)
       domUpdates.happyReservation();
       domUpdates.show(bookingSectionButton)
-
     })
   }
 
@@ -117,7 +110,6 @@ const displayDashboard = () => {
   domUpdates.hide(createBooking)
   domUpdates.hide(searchResultsContainer)
   getCustomerInfo(currentDate, hotel);
-
 }
 
 const displayPastBookings = () => {
@@ -133,10 +125,10 @@ const displayPastBookings = () => {
     <article class="past-room-box" tabindex="0">
       <img class="past-room-img" src="./images/room.png" alt="${pastRoom.roomType}">
       <div class="past-booking-info">
-      <p>Room Type : ${pastRoom.roomType}</p>
-      <p>Booking Date : ${booking.date}</p>
-      <p>Bidet : ${pastRoom.bidet}</p>
-      <p>Cost Per Night : $${pastRoom.costPerNight}</p>
+        <p>Room Type : ${pastRoom.roomType}</p>
+        <p>Booking Date : ${booking.date}</p>
+        <p>Bidet : ${pastRoom.bidet}</p>
+        <p>Cost Per Night : $${pastRoom.costPerNight}</p>
       </div>
     </article>
   `
@@ -179,7 +171,6 @@ const showBookingPage = () => {
   domUpdates.hide(noResults)
   domUpdates.hide(searchResultsContainer)
   datePicked.value = ""
-
 }
 
 const showFilterTypes = () => {
@@ -291,8 +282,6 @@ const displayByType = (roomType) => {
     </article>
   `
 });
-
-
 }
 
 //EVENT LISTENERS

@@ -25,7 +25,7 @@ it('Should have a list of bookings', () => {
   expect(hotel.bookings).to.equal(sampleBookings)
 });
 
- it('Should have a method to find unavailable rooms', () => {
+it('Should have a method to find unavailable rooms', () => {
    hotel.getUnavailableRooms("2022/04/23");
    expect(hotel.unavailableRooms[0]).to.deep.equal({
     id: '5fwrgu4i7k55hl6sz',
@@ -35,12 +35,12 @@ it('Should have a list of bookings', () => {
   });
 });
 
-  it('Should have a method to find available rooms', () => {
+it('Should have a method to find available rooms', () => {
     hotel.getAvailableRooms("2022/04/23");
     expect(hotel.availableRooms).to.have.a.lengthOf(4)
   });
 
-  it('Should have a method to sort available rooms by type', () => {
+it('Should have a method to sort available rooms by type', () => {
     hotel.getAvailableRooms("2022/04/23")
     let filteredRooms = hotel.filterRoomsByType("single room")
     expect(filteredRooms).to.have.a.lengthOf(2);
