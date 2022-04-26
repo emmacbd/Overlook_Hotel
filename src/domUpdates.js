@@ -29,7 +29,7 @@ happyReservation() {
   this.hide(createBooking);
   searchResultsContainer.innerHTML = "";
   this.hide(foundResults);
-  searchResultsContainer.innerHTML += `<div class="booking-msg"><h2 class="good-book">Thank you for booking a room with Overlook, we look forward to seeing you soon!</h2></div>`
+  searchResultsContainer.innerHTML += `<div class="booking-msg"><h2 class="good-book">Thank you for booking a room with Overlook, we look forward to your stay!</h2></div>`
 },
 
 sadReservation() {
