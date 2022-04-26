@@ -53,6 +53,7 @@ const fetchAllData = (userNameID) => {
     .then(data => {
       assignData(data);
       assignCustomer(data, userNameID);
+      displayDashboard();
     })
     .catch(err => displayErrorMessage());
 }
@@ -74,9 +75,6 @@ const getCustomerInfo = (customer) => {
   customer.getBookings(bookingData);
   customerName.innerText = `${customer.name}!`;
   custSpent.innerHTML = `$${customer.calculateTotalSpent(bookingData, roomData)}`;
-  displayPastBookings();
-  displayFutureBookings();
-  displayDashboard();
 }
 
 const grabBooking = (event, roomData, customer) => {
@@ -105,6 +103,7 @@ const refreshBookings = () => {
       fetchData('customers')
     ]).then(data => {
       assignData(data)
+      getCustomerInfo(customer)
       domUpdates.happyReservation();
       domUpdates.show(bookingSectionButton)
     })
@@ -127,7 +126,6 @@ const confirmLogin = (event) => {
   let password = passwordInput.value
     if(userName.startsWith('customer') && password === 'overlook2021'){
       let userNameID = parseInt(userName.split('customer')[1])
-      console.log("loginID", userNameID);
       domUpdates.hide(loginPage)
       fetchAllData(userNameID)
       return userNameID
@@ -144,6 +142,8 @@ const displayDashboard = () => {
   domUpdates.show(bookingSectionButton)
   domUpdates.hide(createBooking)
   domUpdates.hide(searchResultsContainer)
+  displayPastBookings();
+  displayFutureBookings();
 }
 
 const displayPastBookings = () => {
