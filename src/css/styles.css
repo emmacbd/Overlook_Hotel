@@ -1,11 +1,26 @@
 * {
-  border: 1px solid blue;
+  border: 1px rebeccapurple;
   font-family: 'Shippori Antique B1', sans-serif;
+}
+
+h2 {
+  font-size: 25pt;
+  font-weight: bolder;
+}
+
+h3 {
+  font-size: 20pt;
 }
 
 
 body {
-  /* background-image: url('./src/images/overlook.jpeg'); */
+  /* background-image: url('./images/overlook-two.jpg');
+  height: 100%;
+  background-size: cover;
+  transition: all 500ms ease-in-out;
+  overflow: hidden; */
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0px;
   top: 0;
   bottom: 0;
@@ -16,11 +31,25 @@ body {
   position: fixed;
 }
 
+/* .hotel-mountain-image {
+  height: 100%;
+  background-size: cover;
+  transition: all 500ms ease-in-out;
+  overflow: hidden;
+} */
+
 .nav-bar {
   background-color: #BE7BC0;
+  margin-top:-2%;
+}
+
+.nav-bar-list {
+  list-style-type: none;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-right: 5%;
+
 }
 
 main {
@@ -35,11 +64,10 @@ cursor:pointer;
 .book-button, .customer-bookings {
   width: 150px;
   font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
   margin: 20px;
   height: 55px;
   border-radius: 50px;
+  margin-left: 90%;
 }
 
 .book-button:hover, .customer-bookings:hover {
@@ -76,13 +104,34 @@ cursor:pointer;
   height:100vh;
 }
 
-.past-room-box, .future-room-box {
+.booking-header {
+  border-bottom-color: #8FD6EC;
+  border-bottom-style: outset;
+  border-bottom-width: thick;
+}
+
+.past-room-img, .future-room-img, .avail-room-img {
+  width:70%;
+  height:100%;
+  border-radius: 2%;
+}
+
+.past-room-box, .future-room-box, .available-room-box {
   background-color: #F8F8F9;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  width: 30%;
-  height: 30%;
+  flex-wrap: nowrap;
+  width: 35%;
+  height: 38%;
+  margin-bottom: 2%;
+  border-radius: 2%;
+  align-items: center;
+
+}
+
+
+.available-room-box {
+  width: 40%;
+  height: 45%;
 }
 
 .create-booking-section {
@@ -92,33 +141,56 @@ cursor:pointer;
   align-items: center;
   justify-content: space-around;
   margin-top: 5%;
-  height: 30%;
+  height: 50%;
+  font-size: 18pt;
+  font-weight: bold;
+  letter-spacing: 2px;
 
 }
+.date-button, .clear-date-search, .filter-types-button, .filter-button, .clear-room-search {
+  font-size: 13px;
+  height: 38px;
+  border-radius: 10px;
+}
 
+.book-room-button {
+  height: 55%;
+  border-radius: 10%;
+}
+
+.date-button:hover, .clear-date-search:hover, .filter-types-button:hover, .filter-button:hover, .clear-room-search:hover, .book-room-button:hover {
+   background-color: #BE7BC0;
+}
 .invalid-date-msg {
-  margin-top:-4%;
+  margin-top:-1%;
 }
 
 .date-box {
   height:14%;
 }
 
-.type-filter-box {
-
+.room-type-filter {
+  display:flex;
 }
 
 .search-results {
+  background-color: #8FD6EC;
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   overflow-y: scroll;
-  margin-top: 4%;
+  padding-top: 6%;
+  margin-top: 2%;
+
 }
 
-.available-room-box {
-  display: flex;
+.booking-msg {
+
+}
+
+.results-found, .no-results {
+  display:flex;
   flex-direction: column;
   align-items:center;
 }
