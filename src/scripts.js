@@ -40,6 +40,7 @@ const passwordInput = document.querySelector(".password-input");
 const loginButton = document.getElementById("submitLogin")
 const invalidUser = document.querySelector(".invalid-name-msg");
 const invalidPass = document.querySelector(".invalid-pass-msg");
+const errorBox = document.querySelector(".error-box")
 
 //GLOBAL VARIABLES
 let hotel, customer, roomData, bookingData, customersData, selectedDate;
@@ -50,23 +51,26 @@ let hotel, customer, roomData, bookingData, customersData, selectedDate;
 const fetchAllData = (userNameID) => {
   Promise.all([fetchData("rooms"), fetchData("bookings"), fetchData("customers")])
     .then(data => {
-      assignData(data, userNameID);
-      console.log(userNameID);
+      assignData(data);
+      assignCustomer(data, userNameID);
     })
     .catch(err => displayErrorMessage());
 }
 
-const assignData = (response, userNameID) => {
+const assignData = (response) => {
   roomData = response[0].rooms;
   bookingData = response[1].bookings;
   customersData = response[2].customers;
   hotel = new Hotel(roomData, bookingData, customersData);
-  getCustomerInfo(userNameID)
 }
 
-const getCustomerInfo = (userNameID) => {
-  customer = new Customer(customersData[`${userNameID}`]);
-  console.log("customer check", customer);
+const assignCustomer = (data, userNameID) => {
+  customer = new Customer(customersData[`${userNameID}`-1])
+  getCustomerInfo(customer);
+
+}
+
+const getCustomerInfo = (customer) => {
   customer.getBookings(bookingData);
   customerName.innerText = `${customer.name}!`;
   custSpent.innerHTML = `$${customer.calculateTotalSpent(bookingData, roomData)}`;
@@ -75,16 +79,16 @@ const getCustomerInfo = (userNameID) => {
   displayDashboard();
 }
 
-const grabBooking = (event, roomData) => {
+const grabBooking = (event, roomData, customer) => {
   if (event.target.className === "book-room-button"){
     let chosenRoom = roomData.find(room => {
       return room.number === parseInt(event.target.id)
     })
-    generateBooking(chosenRoom)
+    generateBooking(chosenRoom, customer)
   }
 }
 
-const generateBooking = (chosenRoom) => {
+const generateBooking = (chosenRoom, customer) => {
   let bookedDate = selectedDate.split('-').join('/');
   const bookingInfo = {
     userID: customer.id,
@@ -140,7 +144,6 @@ const displayDashboard = () => {
   domUpdates.show(bookingSectionButton)
   domUpdates.hide(createBooking)
   domUpdates.hide(searchResultsContainer)
-  getCustomerInfo(currentDate, hotel);
 }
 
 const displayPastBookings = () => {
@@ -201,7 +204,8 @@ const showBookingPage = () => {
   domUpdates.hide(foundResults)
   domUpdates.hide(noResults)
   domUpdates.hide(searchResultsContainer)
-  datePicked.value = ""
+  domUpdates.hide(errorBox)
+  datePicked.value = "";
 }
 
 const showFilterTypes = () => {
@@ -326,7 +330,7 @@ loginButton.addEventListener('click', (event) => {
 bookingSectionButton.addEventListener('click', showBookingPage);
 
 searchResultsContainer.addEventListener('click', (event) => {
-  grabBooking(event, roomData)
+  grabBooking(event, roomData, customer)
 });
 
 viewBookings.addEventListener('click', displayDashboard);
@@ -348,10 +352,12 @@ export {
   hotel,
   foundResults,
   noResults,
-  searchResultsContainer, futureBookingSection,
+  searchResultsContainer,
+  futureBookingSection,
   pastBookingSection,
   showBookingPage,
   displayDashboard,
   createBooking,
-  refreshBookings
+  refreshBookings,
+
 }
