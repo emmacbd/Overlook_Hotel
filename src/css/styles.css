@@ -141,8 +141,8 @@ cursor:pointer;
   align-items: center;
   justify-content: space-around;
   margin-top: 5%;
-  height: 50%;
-  font-size: 18pt;
+  height: 65%;
+  font-size: 14pt;
   font-weight: bold;
   letter-spacing: 2px;
 
@@ -163,6 +163,11 @@ cursor:pointer;
 }
 .invalid-date-msg {
   margin-top:-1%;
+}
+
+.invalid-date-msg, .invalid-type-msg {
+  color: #e91e63;
+  font-size: 15pt;
 }
 
 .date-box {
