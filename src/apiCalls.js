@@ -3,6 +3,8 @@ let currentDate = dayjs().format("YYYY/MM/DD");
 import {customer, hotel, showBookingPage, refreshBookings, bookingSectionButton} from './scripts.js'
 import domUpdates from "./domUpdates.js"
 
+
+//FETCH REQUEST
 function fetchData(dataLocation) {
   return fetch(`http://localhost:3001/api/v1/${dataLocation}`)
  .then(response => {
@@ -41,8 +43,6 @@ function postBooking(bookingInfo) {
   })
 
 }
-
-///refresh booking - fetch data,
 
 
 const displayErrorMessage = (err) => {
