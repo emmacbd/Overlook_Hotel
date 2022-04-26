@@ -1,11 +1,11 @@
 import './css/styles.css';
 import './images/overlook-two.jpg'
+import './images/room.png'
 
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
 // import './src/images/overlook.jpeg'
-import './images/room.png'
 // import {sampleCustomers, sampleRooms, sampleBookings} from '../test/sample-data.js'
 import domUpdates from './domUpdates.js';
 import { fetchData, postBooking, displayErrorMessage } from './apiCalls';
@@ -102,6 +102,7 @@ const refreshBookings = () => {
       assignData(data)
       getCustomerInfo(currentDate, hotel)
       domUpdates.happyReservation();
+      domUpdates.show(bookingSectionButton)
 
     })
   }
@@ -128,12 +129,13 @@ const displayPastBookings = () => {
     })
 
   pastBookingSection.innerHTML += `
-    <article class="past-room-box">
+    <article class="past-room-box" tabindex="0">
       <img class="past-room-img" src="./images/room.png" alt="${pastRoom.roomType}">
       <div class="past-booking-info">
-        <p id="past-room-type">Room Type: ${pastRoom.roomType}</p>
-        <p id="past-room-date">Booking Date: ${booking.date}</p>
-        <p id="past-room-cost">Cost Per Night: $${pastRoom.costPerNight}</p>
+      <p>Room Type : ${pastRoom.roomType}</p>
+      <p>Booking Date : ${booking.date}</p>
+      <p>Bidet : ${pastRoom.bidet}</p>
+      <p>Cost Per Night : $${pastRoom.costPerNight}</p>
       </div>
     </article>
   `
@@ -150,12 +152,13 @@ const displayFutureBookings = () => {
         room.number === booking.roomNumber)
 
       futureBookingSection.innerHTML += `
-      <article class="future-room-box">
+      <article class="future-room-box" tabindex="0">
         <img class="future-room-img" src="./images/room.png"  alt="${futureRoom.roomType}">
         <div class="future-booking-info">
-          <p id="future-room-type">Room Type: ${futureRoom.roomType}</p>
-          <p id="future-room-date">Booking Date: ${booking.date}</p>
-          <p id="future-room-cost">Cost Per Night: $${futureRoom.costPerNight}</p>
+          <p>Room Type : ${futureRoom.roomType}</p>
+          <p>Booking Date : ${booking.date}</p>
+          <p>Bidet : ${futureRoom.bidet}</p>
+          <p>Cost Per Night : $${futureRoom.costPerNight}</p>
         </div>
       </article>
       `
@@ -215,11 +218,12 @@ const showDateSearch = (datePicked) => {
       availableByDateRooms.forEach(room => {
         searchResultsContainer.innerHTML += `
         <article class="available-room-box">
-          <div class="booking-info">${room.roomType}</div>
-          <img class="avail-room-img" src="" alt="${room.roomType}">
+          <img class="avail-room-img" src="./images/room.png"  alt="${room.roomType}">
           <div class="booking-info">
-            <h3 id="room-type">Number of Beds: ${room.numBeds} Bed Size: ${room.bedSize}</h3>
-            <h3 id="room-cost">Cost Per Night: ${room.costPerNight}</h3>
+            <p>${room.roomType}</p>
+            <p id="room-type">Number of Beds: ${room.numBeds}</p> <p>${room.bedSize} Size Bed </p>
+            <p>Bidet : ${room.bidet}</p>
+            <p id="room-cost">Cost Per Night: ${room.costPerNight}</p>
             </div>
           <button class="book-room-button" id=${room.number}>BOOK THIS ROOM</button>
         </article>
@@ -274,12 +278,12 @@ const displayByType = (roomType) => {
   filteredRooms.forEach(room => {
     searchResultsContainer.innerHTML += `
     <article class="available-room-box">
-      <div class="booking-info">${room.roomType}</div>
-      <img class="avail-room-img" src="" alt="${room.roomType}">
-      <div class="booking-info">
-        <h3 id="room-type">Number of Beds: ${room.numBeds} Bed Size: ${room.bedSize}</h3>
-        <h3 id="room-cost">Cost Per Night: ${room.costPerNight}</h3>
-        </div>
+      <img class="avail-room-img" src="./images/room.png" alt="${room.roomType}">
+        <p>${room.roomType}</p>
+        <p id="room-type">Number of Beds: ${room.numBeds}</p> <p>${room.bedSize} Size Bed </p>
+        <p>Bidet : ${futureRoom.bidet}</p>
+        <p id="room-cost">Cost Per Night: ${room.costPerNight}</p>
+      </div>
       <button class="book-room-button" id=${room.number}>BOOK THIS ROOM</button>
     </article>
   `
@@ -287,7 +291,6 @@ const displayByType = (roomType) => {
 
 
 }
-//maybe have a get filtered by type and then displayby type???
 
 //EVENT LISTENERS
 
@@ -295,7 +298,6 @@ window.addEventListener('load', fetchAllData);
 
 bookingSectionButton.addEventListener('click', showBookingPage);
 
-// postBookingButton.addEventListener('click', createBooking);
 searchResultsContainer.addEventListener('click', (event) => {
   grabBooking(event, roomData)
 });

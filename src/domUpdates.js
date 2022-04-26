@@ -29,36 +29,17 @@ happyReservation() {
   this.hide(createBooking);
   searchResultsContainer.innerHTML = "";
   this.hide(foundResults);
-  searchResultsContainer.innerHTML += `<h2 class="good-book">Thank you for booking a room with Overlook, we look forward to seeing you soon!</h2>`
-  // futureBookingSection.innerHTML = "";
-  // pastBookingSection.innerHTML = "";
-  // setTimeout(() => {
-  //   displayDashboard()
-  // },1700)
-
-  // displayDashboard();
+  searchResultsContainer.innerHTML += `<div class="booking-msg"><h2 class="good-book">Thank you for booking a room with Overlook, we look forward to seeing you soon!</h2></div>`
 },
 
 sadReservation() {
   this.hide(createBooking);
   searchResultsContainer.innerHTML = "";
   this.hide(foundResults);
-  searchResultsContainer.innerHTML += `<h2 class="bad-book">Oh no, your booking was not sucessful. Please try again.</h2>`
-  setTimeout(() => {
-    displayDashboard()
-  },1700)
-  // futureBookingSection.innerHTML = "";
-  // pastBookingSection.innerHTML = "";
-  // showBookingPage();
+  searchResultsContainer.innerHTML += `<div class="booking-msg"><h2 class="bad-book">Oh no, your booking was not sucessful. Please try again.</h2></div>`
 },
 
 
-//BOOKING PAGE
-
-
-
-//BOOKING OPTIONS
-
-}; //END OF DOMUPATES CURLY
+};
 
 export default domUpdates;

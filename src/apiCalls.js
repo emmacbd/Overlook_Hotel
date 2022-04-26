@@ -1,6 +1,6 @@
 const dayjs = require('dayjs');
 let currentDate = dayjs().format("YYYY/MM/DD");
-import {customer, hotel, showBookingPage, refreshBookings} from './scripts.js'
+import {customer, hotel, showBookingPage, refreshBookings, bookingSectionButton} from './scripts.js'
 import domUpdates from "./domUpdates.js"
 
 function fetchData(dataLocation) {
@@ -37,6 +37,7 @@ function postBooking(bookingInfo) {
   })
   .catch(error => {
     domUpdates.sadReservation();
+    domUpdates.show(bookingSectionButton)
   })
 
 }
