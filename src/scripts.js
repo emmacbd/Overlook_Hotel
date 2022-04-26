@@ -34,7 +34,13 @@ const datePicked = document.getElementById("dateSelection");
 const invalidDateMsg = document.querySelector(".invalid-date-msg");
 const invalidTypeMsg = document.querySelector(".invalid-type-msg");
 const filterByTypeButton = document.querySelector(".filter-button");
-
+const loginPage = document.querySelector(".login-page")
+const userNameInput = document.querySelector(".username-input");
+const passwordInput = document.querySelector(".password-input");
+const loginButton = document.getElementById("submitLogin")
+const invalidUser = document.querySelector(".invalid-name-msg");
+const invalidPass = document.querySelector(".invalid-pass-msg");
+const errorBox = document.querySelector(".error-box")
 
 //GLOBAL VARIABLES
 let hotel, customer, roomData, bookingData, customersData, selectedDate;
@@ -42,10 +48,11 @@ let hotel, customer, roomData, bookingData, customersData, selectedDate;
 //FUNCTIONS
 
 //FETCH, ASSIGN, POST
-const fetchAllData = () => {
+const fetchAllData = (userNameID) => {
   Promise.all([fetchData("rooms"), fetchData("bookings"), fetchData("customers")])
     .then(data => {
       assignData(data);
+      assignCustomer(data, userNameID);
       displayDashboard();
     })
     .catch(err => displayErrorMessage());
@@ -58,27 +65,28 @@ const assignData = (response) => {
   hotel = new Hotel(roomData, bookingData, customersData);
 }
 
-const getCustomerInfo = (currentDate, hotel) => {
-  customer = new Customer(customersData[25]);
+const assignCustomer = (data, userNameID) => {
+  customer = new Customer(customersData[`${userNameID}`-1])
+  getCustomerInfo(customer);
 
+}
+
+const getCustomerInfo = (customer) => {
   customer.getBookings(bookingData);
   customerName.innerText = `${customer.name}!`;
   custSpent.innerHTML = `$${customer.calculateTotalSpent(bookingData, roomData)}`;
-  displayPastBookings();
-  displayFutureBookings();
 }
 
-
-const grabBooking = (event, roomData) => {
+const grabBooking = (event, roomData, customer) => {
   if (event.target.className === "book-room-button"){
     let chosenRoom = roomData.find(room => {
       return room.number === parseInt(event.target.id)
     })
-    generateBooking(chosenRoom)
+    generateBooking(chosenRoom, customer)
   }
 }
 
-const generateBooking = (chosenRoom) => {
+const generateBooking = (chosenRoom, customer) => {
   let bookedDate = selectedDate.split('-').join('/');
   const bookingInfo = {
     userID: customer.id,
@@ -95,11 +103,36 @@ const refreshBookings = () => {
       fetchData('customers')
     ]).then(data => {
       assignData(data)
-      getCustomerInfo(currentDate, hotel)
+      getCustomerInfo(customer)
       domUpdates.happyReservation();
       domUpdates.show(bookingSectionButton)
     })
   }
+
+
+//LOGIN PAGE
+
+const showLoginPage = () => {
+  domUpdates.hide(customerDashboard)
+  domUpdates.hide(viewBookings)
+  domUpdates.hide(bookingSectionButton)
+  domUpdates.hide(createBooking)
+  domUpdates.hide(searchResultsContainer)
+}
+
+const confirmLogin = (event) => {
+  event.preventDefault()
+  let userName = userNameInput.value
+  let password = passwordInput.value
+    if(userName.startsWith('customer') && password === 'overlook2021'){
+      let userNameID = parseInt(userName.split('customer')[1])
+      domUpdates.hide(loginPage)
+      fetchAllData(userNameID)
+      return userNameID
+  } else {
+    domUpdates.show(invalidUser)
+  }
+}
 
 
 //CUSTOMER DASHBOARD FUNCTIONS
@@ -109,7 +142,8 @@ const displayDashboard = () => {
   domUpdates.show(bookingSectionButton)
   domUpdates.hide(createBooking)
   domUpdates.hide(searchResultsContainer)
-  getCustomerInfo(currentDate, hotel);
+  displayPastBookings();
+  displayFutureBookings();
 }
 
 const displayPastBookings = () => {
@@ -170,7 +204,8 @@ const showBookingPage = () => {
   domUpdates.hide(foundResults)
   domUpdates.hide(noResults)
   domUpdates.hide(searchResultsContainer)
-  datePicked.value = ""
+  domUpdates.hide(errorBox)
+  datePicked.value = "";
 }
 
 const showFilterTypes = () => {
@@ -286,12 +321,16 @@ const displayByType = (roomType) => {
 
 //EVENT LISTENERS
 
-window.addEventListener('load', fetchAllData);
+window.addEventListener('load', showLoginPage);
+
+loginButton.addEventListener('click', (event) => {
+  confirmLogin(event)
+});
 
 bookingSectionButton.addEventListener('click', showBookingPage);
 
 searchResultsContainer.addEventListener('click', (event) => {
-  grabBooking(event, roomData)
+  grabBooking(event, roomData, customer)
 });
 
 viewBookings.addEventListener('click', displayDashboard);
@@ -313,10 +352,12 @@ export {
   hotel,
   foundResults,
   noResults,
-  searchResultsContainer, futureBookingSection,
+  searchResultsContainer,
+  futureBookingSection,
   pastBookingSection,
   showBookingPage,
   displayDashboard,
   createBooking,
-  refreshBookings
+  refreshBookings,
+
 }

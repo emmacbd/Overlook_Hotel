@@ -10,8 +10,9 @@ function fetchData(dataLocation) {
  .then(response => {
    if (!response.ok) {
    throw Error(response.statusText)
-  }
-  return response.json()
+ } else {
+   return response.json()
+ }
   })
  .catch(err => displayErrorMessage(err));
 }
@@ -27,10 +28,8 @@ function postBooking(bookingInfo) {
   })
   .then(response => {
     if (!response.ok) {
-      console.log("sad response", response);
       throw Error()
     } else {
-      console.log("happy response", response);
       return response.json()
     }
   })
