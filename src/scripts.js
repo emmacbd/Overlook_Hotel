@@ -117,11 +117,6 @@ const showLoginPage = () => {
   domUpdates.hide(searchResultsContainer)
 }
 
-// username: customer50 (where 50 is the ID of the user)
-// password: overlook2021
-//login function to check if valid login
-//get id from userName
-//then fetchData customers with user id at end
 const confirmLogin = (event) => {
   event.preventDefault()
   let userName = userNameInput.value
@@ -133,12 +128,9 @@ const confirmLogin = (event) => {
       fetchAllData(userNameID)
       return userNameID
   } else {
-    domUpdates.show(invalidUser)//error here
+    domUpdates.show(invalidUser)
   }
-  // return userNameID
 }
-
-
 
 
 //CUSTOMER DASHBOARD FUNCTIONS
