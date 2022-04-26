@@ -34,7 +34,12 @@ const datePicked = document.getElementById("dateSelection");
 const invalidDateMsg = document.querySelector(".invalid-date-msg");
 const invalidTypeMsg = document.querySelector(".invalid-type-msg");
 const filterByTypeButton = document.querySelector(".filter-button");
-
+const loginPage = document.querySelector(".login-page")
+const userNameInput = document.querySelector(".username-input");
+const passwordInput = document.querySelector(".password-input");
+const loginButton = document.getElementById("submitLogin")
+const invalidUser = document.querySelector(".invalid-name-msg");
+const invalidPass = document.querySelector(".invalid-pass-msg");
 
 //GLOBAL VARIABLES
 let hotel, customer, roomData, bookingData, customersData, selectedDate;
@@ -42,32 +47,33 @@ let hotel, customer, roomData, bookingData, customersData, selectedDate;
 //FUNCTIONS
 
 //FETCH, ASSIGN, POST
-const fetchAllData = () => {
+const fetchAllData = (userNameID) => {
   Promise.all([fetchData("rooms"), fetchData("bookings"), fetchData("customers")])
     .then(data => {
-      assignData(data);
-      displayDashboard();
+      assignData(data, userNameID);
+      console.log(userNameID);
     })
     .catch(err => displayErrorMessage());
 }
 
-const assignData = (response) => {
+const assignData = (response, userNameID) => {
   roomData = response[0].rooms;
   bookingData = response[1].bookings;
   customersData = response[2].customers;
   hotel = new Hotel(roomData, bookingData, customersData);
+  getCustomerInfo(userNameID)
 }
 
-const getCustomerInfo = (currentDate, hotel) => {
-  customer = new Customer(customersData[25]);
-
+const getCustomerInfo = (userNameID) => {
+  customer = new Customer(customersData[`${userNameID}`]);
+  console.log("customer check", customer);
   customer.getBookings(bookingData);
   customerName.innerText = `${customer.name}!`;
   custSpent.innerHTML = `$${customer.calculateTotalSpent(bookingData, roomData)}`;
   displayPastBookings();
   displayFutureBookings();
+  displayDashboard();
 }
-
 
 const grabBooking = (event, roomData) => {
   if (event.target.className === "book-room-button"){
@@ -95,11 +101,44 @@ const refreshBookings = () => {
       fetchData('customers')
     ]).then(data => {
       assignData(data)
-      getCustomerInfo(currentDate, hotel)
       domUpdates.happyReservation();
       domUpdates.show(bookingSectionButton)
     })
   }
+
+
+//LOGIN PAGE
+
+const showLoginPage = () => {
+  domUpdates.hide(customerDashboard)
+  domUpdates.hide(viewBookings)
+  domUpdates.hide(bookingSectionButton)
+  domUpdates.hide(createBooking)
+  domUpdates.hide(searchResultsContainer)
+}
+
+// username: customer50 (where 50 is the ID of the user)
+// password: overlook2021
+//login function to check if valid login
+//get id from userName
+//then fetchData customers with user id at end
+const confirmLogin = (event) => {
+  event.preventDefault()
+  let userName = userNameInput.value
+  let password = passwordInput.value
+    if(userName.startsWith('customer') && password === 'overlook2021'){
+      let userNameID = parseInt(userName.split('customer')[1])
+      console.log("loginID", userNameID);
+      domUpdates.hide(loginPage)
+      fetchAllData(userNameID)
+      return userNameID
+  } else {
+    domUpdates.show(invalidUser)//error here
+  }
+  // return userNameID
+}
+
+
 
 
 //CUSTOMER DASHBOARD FUNCTIONS
@@ -286,7 +325,11 @@ const displayByType = (roomType) => {
 
 //EVENT LISTENERS
 
-window.addEventListener('load', fetchAllData);
+window.addEventListener('load', showLoginPage);
+
+loginButton.addEventListener('click', (event) => {
+  confirmLogin(event)
+});
 
 bookingSectionButton.addEventListener('click', showBookingPage);
 
