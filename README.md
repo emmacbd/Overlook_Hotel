@@ -15,6 +15,7 @@
 Overlook is an application that allows the user login as a customer of the Hotel Hotel. Each customer has previous bookings that can be viewed from the customer dashboard. The user can click the Book Room button to create a new booking. From that page, the user can select a check-in date. Any available rooms will display and the user can make their selection then, or they can choose to filter their search by room type. Once the user clicks the Book Now button on their desired room, they will see a message informing them if their booking was successful or not. From there, they can go back to their dashboard or make another booking request.  
 
 ### Check Out the Page In Action!
+![Screen Recording 2022-04-26 at 2 09 29 PM](https://user-images.githubusercontent.com/93603551/165375326-72d6b20f-a566-4b8e-ba0e-aa1e319a30b8.gif)
 
 
 ### Technologies Used
