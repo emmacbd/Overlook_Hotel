@@ -16,6 +16,7 @@ let currentDate = dayjs().format("YYYY/MM/DD");
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 
 //QUERY SELECTORS
+const bookingMessage = document.querySelector(".booking-msg");
 const bookingSectionButton = document.querySelector(".book-button");
 const viewBookings = document.querySelector(".customer-bookings");
 const customerDashboard = document.querySelector(".customer-dashboard");
@@ -176,6 +177,7 @@ const showBookingPage = () => {
   domUpdates.hide(invalidTypeMsg)
   domUpdates.hide(foundResults)
   domUpdates.hide(noResults)
+  domUpdates.hide(searchResultsContainer)
   datePicked.value = ""
 
 }
@@ -266,7 +268,6 @@ const grabFilteredByType = () => {
 }
 
 const displayByType = (roomType) => {
-  searchResultsContainer.innerHTML = "";
   let filteredRooms = hotel.filterRoomsByType(roomType)
   if(!filteredRooms.length){
     domUpdates.show(noResults)
@@ -275,15 +276,17 @@ const displayByType = (roomType) => {
     domUpdates.show(foundResults)
     domUpdates.hide(noResults)
   }
+  searchResultsContainer.innerHTML = "";
   filteredRooms.forEach(room => {
     searchResultsContainer.innerHTML += `
     <article class="available-room-box">
-      <img class="avail-room-img" src="./images/room.png" alt="${room.roomType}">
+      <img class="avail-room-img" src="./images/room.png"  alt="${room.roomType}">
+      <div class="booking-info">
         <p>${room.roomType}</p>
         <p id="room-type">Number of Beds: ${room.numBeds}</p> <p>${room.bedSize} Size Bed </p>
-        <p>Bidet : ${futureRoom.bidet}</p>
+        <p>Bidet : ${room.bidet}</p>
         <p id="room-cost">Cost Per Night: ${room.costPerNight}</p>
-      </div>
+        </div>
       <button class="book-room-button" id=${room.number}>BOOK THIS ROOM</button>
     </article>
   `
@@ -311,7 +314,6 @@ dateButton.addEventListener('click', (event) => {
 
 filterByTypeButton.addEventListener('click', (event) => {
   event.preventDefault();
-  confirmDate(event);
   grabFilteredByType();
 });
 
