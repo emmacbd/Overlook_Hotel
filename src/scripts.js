@@ -359,5 +359,5 @@ export {
   displayDashboard,
   createBooking,
   refreshBookings,
-
+  bookingSectionButton
 }
