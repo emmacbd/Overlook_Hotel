@@ -1,5 +1,6 @@
 import './css/styles.css';
 import './images/room.png'
+import './images/hotel-overlook.jpg'
 import Hotel from '../src/classes/Hotel';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
